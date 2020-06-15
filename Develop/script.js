@@ -1,47 +1,60 @@
 // Assignment Code
 var characters = [
     {
-    uppercase: (97, 122)
+        uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     },
-    {lowercase: (65, 90)
+    {
+        lowercase: "abcdefghijklmnopqrstuvwxyz"
     },
-    {numbers: (48, 57)
+    {
+        numbers: "1234567890"
     },
-    {symbols: (33, 47)
+    {
+        symbols: "!@#$%^&*()_+"
     }
 ]
 
+let finalPw ="";
+
 function userPrompt() {
-    var confirmNumbers = window.confirm("Would you like Numbers letter?");
+
+    var confirmNumbers = confirm("Would you like Numbers letter?");
     console.log(confirmNumbers);
-    
-    var confirmUp = window.confirm("Would you like Uppercase letters?");
+
+    var confirmUp = confirm("Would you like Uppercase letters?");
     console.log(confirmUp);
-    
-    var confirmLow = window.confirm("Would you like lowercase letters?");
+
+    var confirmLow = confirm("Would you like lowercase letters?");
     console.log(confirmLow);
-    
-    var confirmSymbols = window.confirm("Would you like symbols?");
+
+    var confirmSymbols = confirm("Would you like symbols?");
     console.log(confirmSymbols);
 
-    var confirmLength = window.prompt("Please choose length of password. (Between 8 to 128 characters.)")
+    var confirmLength = prompt("Please choose length of password. (Between 8 to 128 characters.)")
     console.log(confirmLength);
 
-    for(var i = 0; i <= characters.length; i++ )
-    if(confirmNumbers === true) {
-        confirmNumbers = characters.numbers
-    }
-    if(confirmUp === true) {
-        confirmUp = characters.uppercase
-    }
     
-    if(confirmLow === true) {
-        confirmLow = characters.lowercase
+
+    if (confirmNumbers) {
+        finalPw = finalPw + characters[2].numbers
+       
     }
-    
-    if(confirmSymbols === true) {
-        confirmSymbols = characters.symbols
+
+    if (confirmUp) {
+        finalPw = finalPw + characters[0].uppercase
     }
+
+    if (confirmLow) {
+        finalPw = finalPw + characters[1].lowercase
+    }
+
+    if (confirmSymbols) {
+        finalPw = finalPw + characters[3].symbols
+    }
+
+    console.log("FINAL PW CHAR SET: \n" ,finalPw)
+
+    for (var i = 0; i>finalPw.length; i++) {}
     
 
 }
@@ -51,18 +64,20 @@ var generateBtn = document.querySelector("#generate");
 
 
 // Write password to the #password input
-function writePassword(userPrompt) {
 
-var password = function () { 
-        var value = characters[Math.floor(math.random())]
 
-  var passwordText = document.querySelector("#password");
+var password = function () {
+    var value = finalPw[Math.floor(math.random())]
+    
+    var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-} 
-}
+    passwordText.value = password;
+
+    return value;
+}//end password() fct def
+
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-userPrompt();
+generateBtn.addEventListener("click", userPrompt);
+//userPrompt();
